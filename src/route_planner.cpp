@@ -18,7 +18,7 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
     while(current_node->parent != nullptr) {
         path_found.push_back(*current_node);
         distance += current_node->distance(*(current_node->parent));
-        current_node = *(current_node->parent);
+        current_node = current_node->parent;
     }
 
     path_found.push_back(*current_node);
@@ -51,7 +51,7 @@ bool CompareFValue(RouteModel::Node *node1, RouteModel::Node *node2){
 
 RouteModel::Node *RoutePlanner::NextNode() {
     std::sort(open_list.begin(), open_list.end(), CompareFValue);
-    RouteModel::Node *next_node = open_list.begin();
+    RouteModel::Node *next_node = open_list.front();
     open_list.erase(open_list.begin());
     return next_node;
 }
