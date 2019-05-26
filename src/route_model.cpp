@@ -23,7 +23,7 @@ void RouteModel::CreateNodeToRoadHashmap() {
     }
 }
 
-RouteModel::Node * RouteModel::FindClosestNode(float x, float y) {
+RouteModel::Node &RouteModel::FindClosestNode(float x, float y) {
     Node temp;
     temp.x = x;
     temp.y = y;
