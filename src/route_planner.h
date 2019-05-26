@@ -24,6 +24,7 @@ class RoutePlanner {
     float CalculateHValue(const *RouteModel::Node start_node);
     std::vector<*RouteModel::Node> open_list;
     *RouteModel::Node NextNode();
+    void AddNeighbors(*RouteModel::Node node);
 };
 
 #endif
