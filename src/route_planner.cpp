@@ -41,22 +41,22 @@ void RoutePlanner::AStarSearch() {
     }
 }
 
-float RouteModel::CalculateHValue(const *RouteModel::Node start_node) {
+float RouteModel::CalculateHValue(const RouteModel::Node *start_node) {
     return end_node->distance(*start_node);
 }
 
-bool CompareFValue(*RouteModel::Node node1, *RouteModel::Node node2){
+bool CompareFValue(RouteModel::Node *node1, RouteModel::Node *node2){
     return node1->g_value + node1->h_value < node2->g_value + node2->h_value;
 }
 
-*RouteModel::Node RouteModel::NextNode() {
+RouteModel::Node *RouteModel::NextNode() {
     std::sort(open_list.begin(), open_list.end(), CompareFValue);
-    *RouteModel::Node next_node = open_list.begin();
+    RouteModel::Node *next_node = open_list.begin();
     open_list.erase(open_list.begin());
     return next_node;
 }
 
-void RouteModel::AddNeighbors(*RouteModel::Node current_node){
+void RouteModel::AddNeighbors(RouteModel::Node *current_node){
     current_node->FindNeighbors();
     for(auto neighbor : current_node->neighbors) {
         neighbor->parent = current_node;
